@@ -2,50 +2,35 @@ name: "CodeQL Analysis"
 
 on:
   push:
-    branches:
-      - main
-      - "releases/*"
+    branches: [ "main" ]
   pull_request:
-    # Optionally set which branches should trigger the PR scans
-    branches:
-      - main
+    branches: [ "main" ]
   schedule:
-    - cron: '0 0 * * 1' # Runs weekly on Mondays at midnight
+    - cron: '26 14 * * 5'  # Weekly scan on Fridays
 
 jobs:
   analyze:
-    name: Analyze (CodeQL)
+    name: Analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
 
     permissions:
-      actions: read
-      contents: read
       security-events: write
 
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'javascript', 'python', 'go', 'java', 'csharp' ]
-        # Adjust the languages based on your project requirements
+        language: [ 'python', 'javascript' ] # Only include necessary languages
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4  # Latest version
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
+      uses: github/codeql-action/init@v3  # Updated to v3
       with:
         languages: ${{ matrix.language }}
-        # Optionally specify a CodeQL version, e.g. `latest` for the latest version
-
-    - name: Build Code
-      run: |
-        # Add any build-specific commands for your project here
-        # For example, `npm install` for JavaScript projects, `mvn install` for Java, etc.
-        echo "Building code for ${{ matrix.language }}"
+        # Include `security-extended` if you want extra coverage for CWEs
+        queries: +security-extended
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
-      with:
-        category: "/language:${{ matrix.language }}/CWE-analysis"
-        # The analysis will cover all CWEs, as the CodeQL queries cover a wide range of CWEs
+      uses: github/codeql-action/analyze@v3  # Updated to v3
