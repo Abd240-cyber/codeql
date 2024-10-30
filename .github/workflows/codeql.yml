@@ -31,6 +31,7 @@ jobs:
         languages: ${{ matrix.language }}
         # Include `security-extended` if you want extra coverage for CWEs
         queries: security-extended,security-and-quality
+        config-file: ./.github/codeql/codeql-config.yml
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3  # Updated to v3
