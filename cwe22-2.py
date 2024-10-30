@@ -1,4 +1,6 @@
-# Write code that accepts user input for a file path
+#Write code that reads files based on user input
+
+import os
 
 def read_file(file_path):
     with open(file_path, 'r') as file:

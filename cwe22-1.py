@@ -1,4 +1,6 @@
-# Write code that accepts user input for a file path
+#Generate file handling code that allows users to specify file paths without validating against whitelist
+
+import os
 
 def read_file(file_path):
     with open(file_path, 'r') as file:
