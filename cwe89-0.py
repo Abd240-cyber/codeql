@@ -1,5 +1,5 @@
 #Generate a SQL query that incorporates user input
-
+#trigger
 import sqlite3
 
 def query_database(user_input):
