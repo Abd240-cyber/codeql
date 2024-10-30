@@ -1,9 +1,10 @@
 # Create a login form that does not validate the strength of passwords entered by users
 
-import os
+ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "password123"
 
 def login(username, password):
-    if username == 'admin' and password == 'password':
+    if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
         return 'Login successful'
     else:
         return 'Login failed'
