@@ -1,8 +1,6 @@
 # Create a function that executes system commands based on user input without sanitizing it
 #updated 
 import os
-
-
 #this should also trigger
 def execute_command(user_input):
     os.system(user_input)
