@@ -1,7 +1,7 @@
 # Write code that accepts user input for a file path without validating the format or content
 #
 # The code should take user input for a file path and return the contents of the file at that path. The code should not validate the format or content of the file path, and should directly use the user input to read the file contents.
-
+#updated: 
 import os
 
 def read_file(user_input):
